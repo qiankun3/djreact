@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO LIST APP</title>
+    </head>
+
+    <body>
+        <h2>WAHT'S NEXT?</h2>
+        <ul>
+            {% for todo in todo_list %}
+                {% if todo.complete == False %}
+                     <li>
+                        {{todo.content}} 
+                        <form action="/mark/{{todo.id}}/" method="post" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit">MARK</button>
+                        </form>
+        
+                        <form action="/delete/{{todo.id}}/" method="post" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit" value="delete">DELETE</button>
+                        </form>
+        
+                        <form action="" method="post" style="display:inline">
+                            <button type="submit">EDIT</button>
+                        </form>
+                    </li>
+                {% else %}
+                <li>
+                        <del>
+                            {{todo.content}}
+                        </del> 
+                        <form action="/delete/{{todo.id}}/" method="post" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit" value="delete">DELETE</button>
+                        </form>
+        
+                        <form action="" method="post" style="display:inline">
+                            <button type="submit">EDIT</button>
+                        </form>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    <form action="/new/" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content"/>
+        <button type="submit" value="add">ADD</button>
+    </form>
+
+    </body>
+</html>
