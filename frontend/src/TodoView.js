@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import FlipMove from "react-flip-move";
 
+
+// this class is mainly using display list of todo items
 class TodoView extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +43,6 @@ class TodoView extends Component {
     
 
     delete(e) {
-        console.log("id of item to be del: " + e)
         this.props.delete(e);
     }
 
@@ -55,8 +56,6 @@ class TodoView extends Component {
 
     render() {
         var todoItems = this.props.items;
-        // console.log("is this an object?")
-        // console.log(todoItems)
         var listItems = todoItems.map(this.createItems)//????????
         return(
             <ul className="listView">

@@ -14,8 +14,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
 
+    # this is a simple single template todo app
     url(r'^$', views.index, name='index'),
     url(r'^new/', views.newItem, name='new'),
     url(r'^delete/(?P<todo_id>\d+)/', views.deleteItem, name='delete'),
-    url(r'^mark/(?P<todo_id>\d+)/', views.markItem, name='mark')
+    url(r'^mark/(?P<todo_id>\d+)/', views.markItem, name='mark'),
+    url(r'^edit/(?P<todo_id>\d+)/', views.editItem, name='edit'),
+    url(r'^save/', views.saveItem, name='save'),
 ]

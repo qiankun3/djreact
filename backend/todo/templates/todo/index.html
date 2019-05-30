@@ -21,8 +21,9 @@
                             <button type="submit" value="delete">DELETE</button>
                         </form>
         
-                        <form action="" method="post" style="display:inline">
-                            <button type="submit">EDIT</button>
+                        <form action="/edit/{{todo.id}}/" method="get" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit" value="edit">EDIT</button>
                         </form>
                     </li>
                 {% else %}
@@ -35,8 +36,9 @@
                             <button type="submit" value="delete">DELETE</button>
                         </form>
         
-                        <form action="" method="post" style="display:inline">
-                            <button type="submit">EDIT</button>
+                        <form action="/edit/{{todo.id}}/" method="get" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit" value="edit">EDIT</button>
                         </form>
                     </li>
                 {% endif %}
@@ -48,6 +50,23 @@
         <input type="text" name="content"/>
         <button type="submit" value="add">ADD</button>
     </form>
+    <br>-----------EDIT-----------<br>
+    
+    <div>
+        <form action="/save/" method="POST">
+            {% csrf_token %}
+            <p>title</p>
+            <input value={{item_to_edit.title}} type="text" name="title"/>
+            <br><br>
+            <input type="text" name="" id=""></input>
+            <p>content</p>
+            <textarea rows="5" type="text" name="content"/>{{todo.content}}</textarea>
+            <br><br>
+            <button type="submit" value="save">SAVE</button>
+        </form>
+    </div>
+
+    
 
     </body>
 </html>

@@ -1,8 +1,9 @@
 from django.db import models
 from datetime import datetime
 
-#
+# create db for django app called todoDB
 class todoDB(models.Model):
+    # there are 4 catagories {title, content, dateCreated, complete}
     title = models.CharField(max_length=120)
     content = models.TextField()
     dateCreated = models.DateTimeField(auto_now_add=True, blank=True)

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+// create a Modal for poping up edit UI windows
 class Modal extends Component {
   constructor(props, context) {
     super(props, context)
@@ -64,6 +65,7 @@ class Modal extends Component {
               </label>
             </div>
           </form>
+          
           <div className="modalButton">
             <button onClick={() => save(this.state.tempItem)}>SAVE</button>
             <button id="discard" onClick={this.props.close}>DISCARD</button>

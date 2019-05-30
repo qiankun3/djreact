@@ -18,18 +18,25 @@ class Todo extends Component {
             }
         };
 
+        // GET request from server
+        this.axiosGet = this.axiosGet.bind(this);
 
+        // toggle the modal UI popup window
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this)
+
+        // manipulate date from backend api including CRUD
         this.deleteFromServer = this.deleteFromServer.bind(this);
         this.addToServer = this.addToServer.bind(this);
         this.markOnServer = this.markOnServer.bind(this);
 
+        //the function below are for offline test uses 
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.markItem = this.markItem.bind(this);
         this.editItem = this.editItem.bind(this);
-        this.showModal = this.showModal.bind(this);
-        this.closeModal = this.closeModal.bind(this)
-        this.axiosGet = this.axiosGet.bind(this);
+
+
     }
 
     async componentDidMount() {
@@ -42,8 +49,64 @@ class Todo extends Component {
              .catch(err => console.log(err));
     }
 
+    showModal() {
+        this.setState({
+            toggle: true
+        });
+    }
+
+    closeModal() {
+        this.setState({
+            toggle: false
+        });
+    }
+
+    // handle with updating exsiting entries
+    handleSubmit = e => {
+        this.closeModal()
+        axios
+            .put(`http://localhost:8000/api/todo/${e.id}/`, e)
+            .then(res => this.axiosGet())
+            .catch(err => console.log(err));
+    }
+
+    addToServer(e) {
+        if (this._input.value !== "") {
+            var newItem = {
+                "title": this._input.value,
+                "content": "desctiption: ", 
+                "complete": false,
+            };
+            axios.post("http://localhost:8000/api/todo/", newItem)
+            .then(res => this.axiosGet())
+            .catch( err => console.log(err))
+        }
+        
+        this._input.value = "";
+        this._input.focus();
+        e.preventDefault();
+    }
+
+    markOnServer(e) {
+        var updatedItem =  this.state.items.map(x => ({...x}));
+        var markedItem = updatedItem.find(item => item.id === e);
+        markedItem.complete = true
+        this.handleSubmit(markedItem)
+    
+    }
+
+    deleteFromServer(e) {
+        axios
+        .delete(`http://localhost:8000/api/todo/${e}`)
+        .then(res => this.axiosGet());
+    }
+
+    editItem = e => {
+        this.showModal()
+        this.setState({ tempItem: this.state.items.find(item => item.id ===e), modal: !this.state.modal });
+    }
+
     addItem(e) {
-        // /console.log("id: " + this.state.items[this.state.items.length-1].id.toString())
         if (this._input.value !== "") {
             var newItem = {
                 id: this.state.items.length===0?1:this.state.items[this.state.items.length-1].id+1,
@@ -61,25 +124,15 @@ class Todo extends Component {
         }
         
         this._input.value = "";
-        
-        // console.log(this.state.items);
-
         this._input.focus();
-
         e.preventDefault();
 
     }
 
     deleteItem(e) {
 
-        console.log("key in deleteItem: " + e);
-        console.log("item at delete: " + this.state.items);
-
-
         var filteredItems = this.state.items.filter(item =>  (item.id !== e))
 
-        console.log("delete: " + filteredItems)
-        console.log("delete: " + this.state.items)
         this.setState(
             (prevState) => {
                 return{
@@ -89,14 +142,9 @@ class Todo extends Component {
     }
 
     markItem(e) {
-        console.log("what is e? " + e)
-        console.log("complete: " + this.state.items.find(item => item.id ===e).complete)
         var updatedItem =  this.state.items.map(x => ({...x}));
         updatedItem.find(item => item.id === e).complete = true;
-            
 
-        console.log("complete: " + updatedItem.find(item => item.id ===e).complete)
-        console.log("complete: " + this.state.items.find(item => item.id ===e).complete)
         this.setState(
             (prevState) => {
                 return {
@@ -107,78 +155,9 @@ class Todo extends Component {
     
 
 
-    handleSubmit = e => {
 
-        // console.log("save item: ")
-        // console.log(e)
-        this.closeModal()
-        axios
-            .put(`http://localhost:8000/api/todo/${e.id}/`, e)
-            .then(res => this.axiosGet())
-            .catch(err => console.log(err));
-    }
 
-    addToServer(e) {
-        console.log("item: " + this._input.value)
-        if (this._input.value !== "") {
-            var newItem = {
-                // id: this.state.items.length===0?1:this.state.items[this.state.items.length-1].id+1,
-                "title": this._input.value,
-                "content": "desctiption: ",
-                // date: Date.now(),
-                "complete": false,
-            };
-            console.log("item title: " + newItem.title)
-            console.log("item content: " + newItem.content)
-            console.log("item complete: " + newItem.complete)
-            console.log("the item added to todo list: ")
-            console.log(newItem)
-            axios.post("http://localhost:8000/api/todo/", newItem)
-            .then(res => this.axiosGet())
-            .catch( err => console.log(err))
-        }
-        
-        this._input.value = "";
-        this._input.focus();
-        e.preventDefault();
-    }
 
-    markOnServer(e) {
-        console.log("what is e? id: " + e)
-        console.log("id: " + e + " old complete: " + this.state.items.find(item => item.id ===e).complete)
-        var updatedItem =  this.state.items.map(x => ({...x}));
-        var markedItem = updatedItem.find(item => item.id === e);
-        markedItem.complete = true
-            
-        console.log("id: " + e + " updated complete: " + markedItem.complete)
-        console.log("id: " + e + " original complete: "+ this.state.items.find(item => item.id ===e).complete)
-        this.handleSubmit(markedItem)
-    
-    }
-
-    deleteFromServer(e) {
-        axios
-        .delete(`http://localhost:8000/api/todo/${e}`)
-        .then(res => this.axiosGet());
-    }
-
-    editItem = e => {
-        console.log("item about to edit: " + e)
-        this.showModal()
-        this.setState({ tempItem: this.state.items.find(item => item.id ===e), modal: !this.state.modal });
-    }
-
-    showModal() {
-        this.setState({
-            toggle: true
-        });
-    }
-
-    closeModal() {
-        this.setState({
-            toggle: false
-        });
-    }
     
 
     render() {
