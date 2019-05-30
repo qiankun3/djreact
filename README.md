@@ -1,23 +1,4 @@
 # TODO LIST APP built with React & Djanogo Rest Framework
-
-## Fetures
----
-* add TODO Entries
-
-![add](./img/add.gif)
-
-* mark exsiting entries as completed
-
-![mark](./img/mark.gif)
-
-* edit exsiting todo entries including unmarked completed
-
-![edit](./img/edit.gif)
-
-* delete exsiting entries
-
-![delete](./img/delete.gif)
-
 ## Requirements
 * Python 2.7.16
 * Django 1.8.0
@@ -42,8 +23,30 @@ python manage.py runserver
 ```
 - and the backend server would run default at [localhost:8000](localhost:8000)
 
+![backend](./img/backend.gif)
+
 3. go to `frontend` folder, and run
 ```
 npm start
 ```
 - you will see the todo list app automatically opened in your browser at [localhost:3000](localhost:3000)
+![frontend](./img/frontend.gif)
+
+## Fetures
+---
+* add TODO Entries
+
+![add](./img/add.gif)
+
+* mark exsiting entries as completed
+
+![mark](./img/mark.gif)
+
+* edit exsiting todo entries including unmarked completed
+
+![edit](./img/edit.gif)
+
+* delete exsiting entries
+
+![delete](./img/delete.gif)
+
