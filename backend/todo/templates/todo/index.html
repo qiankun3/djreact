@@ -10,7 +10,7 @@
             {% for todo in todo_list %}
                 {% if todo.complete == False %}
                      <li>
-                        {{todo.content}} 
+                        {{todo.title}} 
                         <form action="/mark/{{todo.id}}/" method="post" style="display:inline">
                             {% csrf_token %}
                             <button type="submit">MARK</button>
@@ -28,7 +28,7 @@
                 {% else %}
                 <li>
                         <del>
-                            {{todo.content}}
+                            {{todo.title}}
                         </del> 
                         <form action="/delete/{{todo.id}}/" method="post" style="display:inline">
                             {% csrf_token %}

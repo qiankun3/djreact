@@ -1,0 +1,248 @@
+.todoMain .header input{
+    padding: 10px;
+    font-size: 16px;
+    background: #d8f0df;
+    color: #000;
+    border: 2px solid #18453B;
+    width: 360px;
+}
+
+.todoMain .header input:hover{
+    border: 2px solid #5d916c;
+    color: #000;
+    background: #fff;
+    -webkit-box-shadow: 5px 5px 5px 0px #737373;
+    -moz-box-shadow: 5px 5px 5px 0px #737373;
+    box-shadow: 5px 5px 5px 0px #737373;
+}
+
+.todoMain .header input:focus{
+    background: #fff;
+}
+
+.todoMain .header button{
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #18453B;
+    border-radius: 10%;
+    font-family: monospace;
+    border: 2px solid #18453B;
+    width: 50px;
+}
+
+.todoMain .header button:hover {
+    color: #fff;
+    background-color: #5d916c;
+    border: 2px solid #5d916c;
+    cursor: pointer;
+    
+    -webkit-box-shadow: 5px 5px 5px 0px #737373;
+    -moz-box-shadow: 5px 5px 5px 0px #737373;
+    box-shadow: 5px 5px 5px 0px #737373;
+}
+
+.todoMain .listView li{
+    display: flex;
+    list-style: none;
+    background-color: rgba(24, 69, 59, 0.5);
+    transition: background-color .2s ease-out;
+    border-radius: 5px;
+    width: 420px;
+    color: #333;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 0px;
+    font-size: 20px;
+    font-family: monospace;
+    margin-bottom: 15px;
+    text-align: start;
+}
+
+.todoMain .listView li:hover {
+    background-color: pink;
+    cursor: pointer;
+    -webkit-box-shadow: 5px 5px 5px 0px #737373;
+    -moz-box-shadow: 5px 5px 5px 0px #737373;
+    box-shadow: 5px 5px 5px 0px #737373;
+    /* height: 100px; */
+}
+
+.todoMain .listView .completed {
+    background-color: pink;
+}
+
+.todoMain .listView .listContent {
+    word-wrap: break-word;
+    width: 60%;
+}
+
+.todoMain .listView .buttons{
+    width: 36%;
+
+}
+
+.todoMain .listView button{
+    padding: 1px;
+    margin: 5px;
+    font-size: 12px;
+    font-family: monospace;
+    color: #fff;
+    background-color: #18453B;
+    border-radius: 5px;
+    border: 2px solid #18453B;
+    width: 56px;
+    z-index: 2000;
+}
+
+
+.todoMain .listView button:hover {
+    color: #fff;
+    background-color: #5d916c;
+    border: 2px solid #5d916c;
+    cursor: pointer;
+    
+    -webkit-box-shadow: 5px 5px 5px 0px #737373;
+    -moz-box-shadow: 5px 5px 5px 0px #737373;
+    box-shadow: 5px 5px 5px 0px #737373;
+}
+
+/* .modal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2000;
+    background-color: rgba(0,0,0, 0.5);
+  } */
+.modal .modalBody {
+    display: grid;
+    font-size: 16px;
+    font-family: monospace;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 20%;
+    bottom: 20%;
+    z-index: 2000;
+    margin: auto;
+    background: #eee8dd;
+}
+
+.modalForm {
+    text-align: left;
+    width: 100%;
+    justify-self: center;
+}
+
+.modalTitle {
+    /* background-color: yellow; */
+    padding: 15px;
+    padding-bottom: 5px;
+    margin : 10px;
+    
+}
+
+.modalTitle label{
+}
+
+.modalContent {
+    /* background-color: red; */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 10px;
+}
+.modalComplete {
+    width: 40%;
+    /* background-color: green; */
+    padding-left: 10px;
+    margin: 10px;
+}
+
+.modalButton {
+    /* background-color: blue; */
+    align-self: flex-end;
+    justify-self: flex-end;
+    padding: 0px;
+    margin: 10px;
+}
+
+#tboxTitle {
+    width: 100%;
+    height: 30px;
+}
+
+#tboxContent {
+    width: 100%;
+    align-self: flex-start;
+    height: 150px;
+}
+
+.modal .modalBody button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #18453B;
+    border-radius: 5px;
+    font-family: monospace;
+    border: 2px solid #18453B;
+    width: 90px;
+    /* height: 20px; */
+}
+
+.modal .modalBody button:hover {
+    background-color: #5d916c;
+    border: 2px solid #5d916c;
+    cursor: pointer;
+    -webkit-box-shadow: 5px 5px 5px 0px #737373;
+    -moz-box-shadow: 5px 5px 5px 0px #737373;
+    box-shadow: 5px 5px 5px 0px #737373;
+}
+
+#discard {
+    background-color: #801414;
+    border: 2px solid #801414;
+}
+
+#discard:hover{
+    background-color: #d36666;
+    border: 2px solid #d36666;
+}
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.5);
+    opacity: 0.6;
+    z-index: 1000;
+}
+
+ul.listView {
+    padding: 0;
+}
+
+#txtBox::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #aaaaaa; 
+} 
+
+#txtBox:hover::placeholder {
+    color: #aaaaaa;
+}
+
+  
+#txtBox:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: #aaaaaa; 
+} 
+  
+#txtBox::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #aaaaaa; 
+} 
